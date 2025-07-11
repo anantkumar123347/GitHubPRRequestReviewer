@@ -8,7 +8,7 @@ async function sendToGPT(diffText) {
   try {
     const tokens = estimateTokens(diffText);
     if (tokens > MAX_TOKENS) {
-      return "⚠️ Diff is too large to process. Please split it.";
+      return " Diff is too large to process. Please split it.";
     }
 
     const response = await axios.post(
@@ -37,8 +37,8 @@ async function sendToGPT(diffText) {
 
     return response.data.choices[0].message.content;
   } catch (error) {
-    console.error("❌ GPT API Error:", error.response?.data || error.message);
-    return "❌ Error: Failed to get a review from GPT.";
+    console.error(" GPT API Error:", error.response?.data || error.message);
+    return " Error: Failed to get a review from GPT.";
   }
 }
 

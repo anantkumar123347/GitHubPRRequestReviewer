@@ -9,18 +9,18 @@ async function handleWebhook(req, res) {
     const prNumber = payload.pull_request.number;
     const diffUrl = payload.pull_request.diff_url;
 
-    console.log(`🔔 New PR #${prNumber} - Fetching diff from: ${diffUrl}`);
+    console.log(` New PR #${prNumber} - Fetching diff from: ${diffUrl}`);
 
     try {
       const diffText = await fetchPRDiff(diffUrl);
       const review = await sendToGPT(diffText);
-      console.log("🤖 GPT Review:\n", review);
+      console.log(" GPT Review:\n", review);
     } catch (err) {
-      console.error("❌ Error:", err.message);
+      console.error(" Error:", err.message);
     }
   }
 
-  res.send("✅ Webhook received");
+  res.send(" Webhook received");
 }
 
 module.exports = handleWebhook;
